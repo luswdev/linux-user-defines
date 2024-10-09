@@ -5,23 +5,29 @@ USERNAME="$(whoami)"
 function install_package () {
     PACKAGE_NAME=$1
     if [ -f /etc/debian_version ]; then
-        INSTALLED=$(apt list --installed | grep $PACKAGE_NAME)
-        if [ "$INSTALLED" == "" ]; then
+        INSTALLED=$(apt list --installed 2>&1 | grep $PACKAGE_NAME)
+        IS_VALID=$(apt-cache show $PACKAGE_NAME 2>&1)
+        if [ "$IS_VALID" == "E: No packages found" ]; then
+            printf "skipped %s$PACKAGE_NAME%s for apt.\n" $FMT_CYAN $FMT_RESET
+        elif [ "$INSTALLED" == "" ]; then
             printf "installing %s$PACKAGE_NAME%s from apt...\n" $FMT_CYAN $FMT_RESET
             sudo apt install -y $PACKAGE_NAME
         else
-            printf "already installed %s$PACKAGE_NAME%s." $FMT_CYAN $FMT_RESET
+            printf "already installed %s$PACKAGE_NAME%s.\n" $FMT_CYAN $FMT_RESET
         fi
     elif [ -f /etc/fedora-release ] || [ -f /etc/redhat-release ]; then
-        INSTALLED=$(dnf list installed $PACKAGE_NAME)
-        if [ "$INSTALLED" == "" ]; then
+        INSTALLED=$(dnf list installed $PACKAGE_NAME 2>&1)
+        IS_VALID=$(dnf info $PACKAGE_NAME 2>&1)
+        if [ "$IS_VALID" == "*Error: No matching Packages to list*" ]; then
+            printf "skipped %s$PACKAGE_NAME%s for dnf.\n" $FMT_CYAN $FMT_RESET
+        elif [ "$INSTALLED" == "" ]; then
             echo "installing %s$PACKAGE_NAME%s from dnf...\n" $FMT_CYAN $FMT_RESET
             sudo dnf install -y $PACKAGE_NAME
         else
-            printf "already installed %s$PACKAGE_NAME%s." $FMT_CYAN $FMT_RESET
+            printf "already installed %s$PACKAGE_NAME%s.\n" $FMT_CYAN $FMT_RESET
         fi
     else
-        echo "unsupported OS distribution. please manually install package: $1"
+        echo "unsupported OS distribution. please manually install package: %s$PACKAGE_NAME%s\n" $FMT_CYAN $FMT_RESET
         # skip error
     fi
 }
@@ -41,7 +47,6 @@ function supports_truecolor () {
 
     return 1
 }
-
 
 if [ -t 1 ]; then
     function is_tty () {
@@ -101,9 +106,11 @@ function setup_color () {
 }
 
 function wellcome () {
+    printf "\n"
     printf "============================================================\n"
-    printf "* %s$1%s\n" $FMT_PURPLE $FMT_RESET
+    printf "* setting %s$1%s...\n" $FMT_PURPLE $FMT_RESET
     printf "============================================================\n"
+    printf "\n"
 }
 
 PACKAGES=(
@@ -119,12 +126,14 @@ PACKAGES=(
     zsh
 )
 
-wellcome "setting packages..."
+setup_color
+
+wellcome "packages"
 for pack in "${PACKAGES[@]}"; do
     install_package $pack
 done
 
-wellcome "setting oh-my-zsh..."
+wellcome "oh-my-zsh"
 if [ ! -d "/home/$USERNAME/.oh-my-zsh" ]; then
     printf "installing oh-my-zsh...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -133,9 +142,9 @@ else
 fi
 
 printf "getting jtriley custom theme...\n"
-curl -fLos /home/$USERNAME/.oh-my-zsh/themes/jtriley-custom.zsh-theme https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
+curl -sfLo /home/$USERNAME/.oh-my-zsh/themes/jtriley-custom.zsh-theme https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
 
-wellcome "setting zsh..."
+wellcome "zsh"
 printf "changing shell to zsh...\n"
 sudo chsh -s /bin/zsh "$USERNAME"
 
@@ -171,7 +180,7 @@ fi
 
 install_package autojump
 
-wellcome "seting vim..."
+wellcome "vim"
 printf "getting vimrc...\n"
 curl -sfLo /home/$USERNAME/.vimrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.vimrc
 
@@ -184,18 +193,16 @@ vim -c 'PlugInstall' -c 'qall!'
 printf "getting custom papercolor theme...\n"
 curl -sfLo /home/$USERNAME/.vim/plugged/papercolor-theme/colors/PaperColor.vim https://raw.githubusercontent.com/luswdev/linux-user-defines/main/PaperColor.vim
 
-wellcome "setting tmux..."
+wellcome "tmux"
 printf "getting tmux config...\n"
 curl -sfLo /home/$USERNAME/.tmux.conf https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
 
-if [ ! -d /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ];
+if [ ! -d /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
     printf "installing tmux-plugins: tpm"
     git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 else
-    printf "already insatlled tmux-plugins: tpm"
+    printf "already insatlled tmux-plugins: tpm\n"
 fi
-
-setup_color
 
 printf "\n"
 printf "\t %s o8o  %s            %s o8o  %s    .        %s      .o8  %s          %s            %s          %s\n"          $FMT_RAINBOW $FMT_RESET
