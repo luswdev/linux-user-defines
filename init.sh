@@ -28,7 +28,7 @@ PACKAGES=(
 )
 
 echo "setting packages..."
-for pack in "${PACKAGES[@]}]"; do
+for pack in "${PACKAGES[@]}"; do
     install_package $pack
 done
 
