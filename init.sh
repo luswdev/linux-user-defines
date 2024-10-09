@@ -33,8 +33,11 @@ for pack in "${PACKAGES[@]}]"; do
 done
 
 echo "setting oh-my-zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-curl -fLo /home/$USERNAME https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
+if [ ! -d /home/$USERNAME/.oh-my-zsh ]
+ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+curl -fLo /home/$USERNAME/.oh-my-zsh/themes/ https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
 
 echo "setting zsh.."
 curl -fLo /home/$USERNAME https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
