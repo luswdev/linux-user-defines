@@ -21,7 +21,7 @@ function install_package () {
         if [[ "$IS_VALID" == *"Error: No matching Packages to list"* ]]; then
             printf "skipped %s$PACKAGE_NAME%s for dnf.\n" $FMT_CYAN $FMT_RESET
         elif [ "$INSTALLED" == "" ]; then
-            echo "installing %s$PACKAGE_NAME%s from dnf...\n" $FMT_CYAN $FMT_RESET
+            printf "installing %s$PACKAGE_NAME%s from dnf...\n" $FMT_CYAN $FMT_RESET
             sudo dnf install -y $PACKAGE_NAME
         else
             printf "already installed %s$PACKAGE_NAME%s.\n" $FMT_CYAN $FMT_RESET
