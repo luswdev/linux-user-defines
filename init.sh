@@ -22,9 +22,11 @@ PACKAGES=(
     automake
     gcc
     gcc-c++
+    g++
     kernel-devel
     vim
     tmux
+    zsh
 )
 
 echo "setting packages..."
@@ -40,6 +42,7 @@ fi
 curl -fLo /home/$USERNAME/.oh-my-zsh/themes/ https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
 
 echo "setting zsh.."
+zsh
 curl -fLo /home/$USERNAME https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
 source /home/$USERNAME/.zshrc
 
