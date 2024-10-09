@@ -147,7 +147,7 @@ curl -sfLo /home/$USERNAME/.oh-my-zsh/themes/jtriley-custom.zsh-theme https://ra
 
 wellcome "zsh"
 printf "changing shell to zsh...\n"
-sudo chsh -s $(whereis zsh) "$USERNAME"
+sudo chsh -s $(which zsh) $USERNAME
 
 printf "getting %szshrc%s...\n" $FMT_CYAN $FMT_RESET
 curl -sfLo /home/$USERNAME/.zshrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
