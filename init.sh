@@ -1,5 +1,7 @@
 #!/bin/bash
 
+USERNAME=$(whoami)
+
 function install_package () {
     PACKAGE_NAME=$1
     if [ -f /etc/debian_version ]; then
