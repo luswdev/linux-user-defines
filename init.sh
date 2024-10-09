@@ -4,7 +4,7 @@ function install_package () {
     PACKAGE_NAME=$1
     if [ -f /etc/debian_version ]; then
         echo "install $PACKAGE_NAME from apt"
-        install_with_apt $PACKAGE_NAME
+        sudo apt install -y $PACKAGE_NAME
     elif [ -f /etc/fedora-release ] || [ -f /etc/redhat-release ]; then
         echo "install $PACKAGE_NAME from dnf"
         sudo dnf install -y $PACKAGE_NAME
