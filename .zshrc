@@ -41,10 +41,6 @@ alias qq='exit'
 alias zshref='source ~/.zshrc'
 alias tmuxref='tmux source ~/.tmux.conf'
 
-# docker
-alias qcs-docker='docker exec -it --user $UID:$GID --workdir $(pwd) qcs610-0523'
-alias nvt-docker='docker exec -it --user $UID:$GID --workdir $(pwd) nt-1003'
-
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
@@ -52,17 +48,4 @@ sudo-command-line() {
 }
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
-
-jump-project-dir () {
-    project=$1
-    if [ -d /home/$USERNAME/projects/u$project ]; then
-        cd /home/$USERNAME/projects/u$project 
-    elif [ -d /home/$USERNAME/projects$project ]; then
-        cd /home/$USERNAME/projects/$project 
-    else
-        echo "project: $project not found"
-    fi
-}
-
-alias p='f() { jump-project-dir $1 }; f'
 
