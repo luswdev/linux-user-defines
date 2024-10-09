@@ -40,11 +40,11 @@ if [ ! -d "/home/$USERNAME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-curl -fLo /home/$USERNAME/.oh-my-zsh/themes/ https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
+curl -fLo /home/$USERNAME/.oh-my-zsh/themes/jtriley-custom.zsh-theme https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
 
 echo "setting zsh.."
 zsh
-curl -fLo /home/$USERNAME https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
+curl -fLo /home/$USERNAME/.zshrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
 source /home/$USERNAME/.zshrc
 
 echo "setting zsh plugins..."
@@ -54,10 +54,11 @@ git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/
 install_package autojump-zsh
 
 echo "seting vim..."
-curl -fLo /home/$USERNAME https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.vimrc
+curl -fLo /home/$USERNAME/.vimrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.vimrc
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "setting tmux..."
-curl -fLo /home/$USERNAME https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
+curl -fLo /home/$USERNAME/.tmux.conf https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source /home/$USERNAME/.tmux.conf
 
