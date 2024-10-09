@@ -45,7 +45,7 @@ fi
 curl -fLo /home/$USERNAME/.oh-my-zsh/themes/jtriley-custom.zsh-theme https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
 
 echo "setting zsh.."
-zsh
+chsh -s /bin/zsh "$USERNAME"
 curl -fLo /home/$USERNAME/.zshrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
 source /home/$USERNAME/.zshrc
 
