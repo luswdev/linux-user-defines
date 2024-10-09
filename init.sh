@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USERNAME=$(whoami)
+USERNAME="$(whoami)"
 
 function install_package () {
     PACKAGE_NAME=$1
@@ -36,7 +36,8 @@ done
 
 echo "setting oh-my-zsh..."
 if [ ! -d "/home/$USERNAME/.oh-my-zsh" ]; then
- sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "install oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 curl -fLo /home/$USERNAME/.oh-my-zsh/themes/ https://raw.githubusercontent.com/luswdev/linux-user-defines/main/jtriley-custom.zsh-theme
