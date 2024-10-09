@@ -136,10 +136,10 @@ done
 
 wellcome "oh-my-zsh"
 if [ ! -d "/home/$USERNAME/.oh-my-zsh" ]; then
-    printf "installing oh-my-zsh...\n"
+    printf "installing %soh-my-zsh%s...\n" $FMT_CYAN $FMT_RESET
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else
-    printf "already installed oh-my-zsh.\n"
+    printf "already installed %soh-my-zsh%s.\n" $FMT_CYAN $FMT_RESET
 fi
 
 printf "getting jtriley custom theme...\n"
@@ -149,46 +149,46 @@ wellcome "zsh"
 printf "changing shell to zsh...\n"
 sudo chsh -s /bin/zsh "$USERNAME"
 
-printf "getting zshrc...\n"
+printf "getting %szshrc%s...\n" $FMT_CYAN $FMT_RESET
 curl -sfLo /home/$USERNAME/.zshrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
 
-printf "getting dir color...\n"
+printf "getting %sdircolors%s...\n" $FMT_CYAN $FMT_RESET
 curl -sfLo /home/$USERNAME/.dircolors https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.dircolors
 
 printf "setting cache directory for zsh...\n"
 mkdir -p /home/$USERNAME/.cache/zsh
 
 if [ ! -d /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
-    printf "installing zsh-autosuggestions...\n"
+    printf "installing %szsh-autosuggestions%s...\n" $FMT_CYAN $FMT_RESET
     git clone https://github.com/zsh-users/zsh-autosuggestions /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 else
-    printf "already installed zsh-autosuggestions.\n"
+    printf "already installed %szsh-autosuggestions%s.\n" $FMT_CYAN $FMT_RESET
 fi
 
 if [ ! -d /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
-    printf "installing zsh-syntax-highlighting...\n"
+    printf "installing %szsh-syntax-highlighting%s...\n" $FMT_CYAN $FMT_RESET
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 else
-    printf "already installed zsh-syntax-highlighting.\n"
+    printf "already installed %szsh-syntax-highlighting%s.\n" $FMT_CYAN $FMT_RESET
 fi
 
 if [ ! -d /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
-    printf "installing you-should-use"
+    printf "installing %syou-should-use%s\n" $FMT_CYAN $FMT_RESET
     git clone https://github.com/MichaelAquilina/zsh-you-should-use.git /home/$USERNAME/.oh-my-zsh/custom/plugins/you-should-use
 else
-    printf "already installed you-should-use.\n"
+    printf "already installed %syou-should-use%s.\n" $FMT_CYAN $FMT_RESET
 fi
 
 install_package autojump
 
 wellcome "vim"
-printf "getting vimrc...\n"
+printf "getting %svimrc%s...\n" $FMT_CYAN $FMT_RESET
 curl -sfLo /home/$USERNAME/.vimrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.vimrc
 
-printf "installing vim-plug...\n"
+printf "installing %svim-plug%s...\n" $FMT_CYAN $FMT_RESET
 curl -sfLo /home/$USERNAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-printf "installing require vim plugs...\n"
+printf "installing require %svim plugs%s...\n" $FMT_CYAN $FMT_RESET
 vim -c 'PlugInstall' -c 'qall!'
 
 printf "getting custom papercolor theme...\n"
@@ -199,10 +199,10 @@ printf "getting tmux config...\n"
 curl -sfLo /home/$USERNAME/.tmux.conf https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
 
 if [ ! -d /home/$USERNAME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
-    printf "installing tmux-plugins: tpm"
+    printf "installing tmux-plugins: %stpm%s\n" $FMT_CYAN $FMT_RESET
     git clone https://github.com/tmux-plugins/tpm /home/$USERNAME/.tmux/plugins/tpm
 else
-    printf "already insatlled tmux-plugins: tpm\n"
+    printf "already insatlled tmux-plugins: %stpm%s\n" $FMT_CYAN $FMT_RESET
 fi
 
 printf "\n"
