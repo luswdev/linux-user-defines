@@ -18,7 +18,7 @@ function install_package () {
     elif [ -f /etc/fedora-release ] || [ -f /etc/redhat-release ]; then
         INSTALLED=$(dnf list installed $PACKAGE_NAME 2>&1)
         IS_VALID=$(dnf info $PACKAGE_NAME 2>&1)
-        if [ "$IS_VALID" == "*Error: No matching Packages to list*" ]; then
+        if [[ "$IS_VALID" == *"Error: No matching Packages to list"* ]]; then
             printf "skipped %s$PACKAGE_NAME%s for dnf.\n" $FMT_CYAN $FMT_RESET
         elif [ "$INSTALLED" == "" ]; then
             echo "installing %s$PACKAGE_NAME%s from dnf...\n" $FMT_CYAN $FMT_RESET
@@ -121,6 +121,7 @@ PACKAGES=(
     gcc-c++
     g++
     kernel-devel
+    linux-headers-generic
     vim
     tmux
     zsh
