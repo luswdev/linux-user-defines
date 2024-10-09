@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +x
+
 USERNAME="$(whoami)"
 
 function install_package () {
@@ -55,7 +57,7 @@ install_package autojump-zsh
 
 echo "seting vim..."
 curl -fLo /home/$USERNAME/.vimrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.vimrc
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo /home/$USERNAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "setting tmux..."
 curl -fLo /home/$USERNAME/.tmux.conf https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
