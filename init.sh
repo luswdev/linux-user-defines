@@ -33,7 +33,7 @@ for pack in "${PACKAGES[@]}]"; do
 done
 
 echo "setting oh-my-zsh..."
-if [ ! -d /home/$USERNAME/.oh-my-zsh ]
+if [ ! -d "/home/$USERNAME/.oh-my-zsh" ]
  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
