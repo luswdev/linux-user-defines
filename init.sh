@@ -131,6 +131,7 @@ echo "seting vim..."
 curl -fLo /home/$USERNAME/.vimrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.vimrc
 curl -fLo /home/$USERNAME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c 'PlugInstall' -c 'qall!'
+curl -fLo /home/$USERNAME/.vim/plugged/papercolor-theme/colors/PaperColor.vim https://raw.githubusercontent.com/luswdev/linux-user-defines/main/PaperColor.vim
 
 echo "setting tmux..."
 curl -fLo /home/$USERNAME/.tmux.conf https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
