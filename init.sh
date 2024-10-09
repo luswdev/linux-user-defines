@@ -118,6 +118,7 @@ curl -fLo /home/$USERNAME/.oh-my-zsh/themes/jtriley-custom.zsh-theme https://raw
 echo "setting zsh..."
 sudo chsh -s /bin/zsh "$USERNAME"
 curl -fLo /home/$USERNAME/.zshrc https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.zshrc
+curl -fLo /home/$USERNAME/.dircolors https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.dircolors
 
 echo "setting zsh plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
