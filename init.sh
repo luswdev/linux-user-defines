@@ -125,6 +125,7 @@ PACKAGES=(
     vim
     tmux
     zsh
+    fzf
 )
 
 setup_color
