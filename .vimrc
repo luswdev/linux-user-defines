@@ -11,11 +11,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'wakatime/vim-wakatime'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
 set background=dark
-colorscheme PaperColor
 
 set mouse=nv
 set encoding=utf8
@@ -80,7 +81,10 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+" set list
 set list
+set listchars=tab:>-,trail:·,nbsp:␣
+
 set lcs+=space:·
 
 set tabstop=4       " Number of spaces that a <Tab> counts for
@@ -88,4 +92,8 @@ set shiftwidth=4    " Number of spaces to use for autoindent
 set expandtab       " Use spaces instead of tabs
 
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0 tabstop=8
+
+let g:fzf_layout = { 'down': '~40%' }
+
+colorscheme PaperColor
 

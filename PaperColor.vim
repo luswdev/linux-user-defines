@@ -55,6 +55,7 @@ fun! s:register_default_theme()
         \       'color15' : ['#005f87', '24'],
         \       'color16' : ['#0087af', '31'],
         \       'color17' : ['#008700', '28'],
+        \       'color18' : ['#008700', '28'],
         \       'cursor_fg' : ['#eeeeee', '255'],
         \       'cursor_bg' : ['#005f87', '24'],
         \       'cursorline' : ['#e4e4e4', '254'],
@@ -145,6 +146,7 @@ fun! s:register_default_theme()
         \       'color15' : ['#5f8787', '66'],
         \       'color16' : ['#5fafd7', '74'],
         \       'color17' : ['#d7af00', '178'],
+        \       'color18' : ['#004D40', '28'],
         \       'cursor_fg' : ['#1c1c1c', '234'],
         \       'cursor_bg' : ['#c6c6c6', '251'],
         \       'cursorline' : ['#303030', '236'],
@@ -959,13 +961,14 @@ fun! s:set_color_variables()
   let color13 = get(s:palette, 'color13')
   let color14 = get(s:palette, 'color14')
   let color15 = get(s:palette, 'color15')
+  let color18 = get(s:palette, 'color18')
 
   call s:create_color_variables('background', color00 , 'Black')
   call s:create_color_variables('negative',   color01 , 'DarkRed')
   call s:create_color_variables('positive',   color02 , 'DarkGreen')
   call s:create_color_variables('olive',      color03 , 'DarkYellow') " string
   call s:create_color_variables('neutral',    color04 , 'DarkBlue')
-  call s:create_color_variables('comment',    color05 , 'DarkMagenta')
+  call s:create_color_variables('comment',    color18 , 'DarkMagenta')
   call s:create_color_variables('navy',       color06 , 'DarkCyan') " storageclass
   call s:create_color_variables('foreground', color07 , 'LightGray')
 

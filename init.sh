@@ -194,6 +194,9 @@ vim -c 'PlugInstall' -c 'qall!'
 printf "getting custom papercolor theme...\n"
 curl -sfLo /home/$USERNAME/.vim/plugged/papercolor-theme/colors/PaperColor.vim https://raw.githubusercontent.com/luswdev/linux-user-defines/main/PaperColor.vim
 
+printf "getting airline custom theme...\n"
+curl -sfLo /home/$USERNAME/.vim/plugged/vim-airline-themes/autoload/airline/themes/minimalist.vim https://raw.githubusercontent.com/luswdev/linux-user-defines/main/minimalist.vim
+
 wellcome "tmux"
 printf "getting tmux config...\n"
 curl -sfLo /home/$USERNAME/.tmux.conf https://raw.githubusercontent.com/luswdev/linux-user-defines/main/.tmux.conf
