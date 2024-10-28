@@ -194,7 +194,6 @@ vim -c 'PlugInstall' -c 'qall!'
 printf "install fzf...\n"
 git clone --depth 1 https://github.com/junegunn/fzf.git /home/$USERNAME/.fzf
 /home/$USERNAME/.fzf/install
-source <(fzf --zsh)
 
 printf "getting custom papercolor theme...\n"
 curl -sfLo /home/$USERNAME/.vim/plugged/papercolor-theme/colors/PaperColor.vim https://raw.githubusercontent.com/luswdev/linux-user-defines/main/PaperColor.vim
